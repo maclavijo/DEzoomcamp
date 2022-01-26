@@ -1,0 +1,136 @@
+
+Queries
+
+###################
+SELECT COUNT(1)
+FROM zones;
+###################
+SELECT *
+FROM yellow_taxi_data
+LIMIT 100;
+###################
+ ---- JOIN -----
+SELECT *
+FROM 
+	yellow_taxi_data t,
+	zones zpu,
+	zones zdo
+WHERE
+	t."PULocationID" = zpu."LocationID" AND
+	t."DOLocationID" = zdo."LocationID"
+LIMIT 100;
+
+###################
+ ---- JOIN -----
+SELECT
+	tpep_pickup_datetime,
+	tpep_dropoff_datetime,
+	total_amount,
+	CONCAT(zpu."Borough", ' / ', zpu."Zone") AS "pickup_location",
+	CONCAT(zdo."Borough", ' / ', zdo."Zone") AS "dropoff_location"
+FROM
+	yellow_taxi_data t,
+	zones zpu,
+	zones zdo
+WHERE
+	t."PULocationID" = zpu."LocationID" AND
+	t."DOLocationID" = zdo."LocationID"
+LIMIT 100;
+###################
+SELECT
+	tpep_pickup_datetime,
+	tpep_dropoff_datetime,
+	total_amount,
+	CONCAT(zpu."Borough", ' / ', zpu."Zone") AS "pickup_location",
+	CONCAT(zdo."Borough", ' / ', zdo."Zone") AS "dropoff_location"
+FROM
+	yellow_taxi_data t 
+	JOIN zones zpu ON t."PULocationID" = zpu."LocationID"
+	JOIN zones zdo ON t."DOLocationID" = zdo."LocationID"
+LIMIT 100;
+###################
+SELECT
+	tpep_pickup_datetime,
+	tpep_dropoff_datetime,
+	total_amount,
+	"PULocationID",
+	"DOLocationID"
+FROM yellow_taxi_data t
+WHERE "PULocationID" is NULL
+LIMIT 100;
+###################
+SELECT
+	tpep_pickup_datetime,
+	tpep_dropoff_datetime,
+	total_amount,
+	"PULocationID",
+	"DOLocationID"
+FROM yellow_taxi_data t
+WHERE "DOLocationID" NOT IN (SELECT "LocationID" FROM zones)
+LIMIT 100;
+###################
+DELETE FROM zones WHERE "LocationID" = 142;
+###################
+SELECT
+	tpep_pickup_datetime,
+	tpep_dropoff_datetime,
+	total_amount,
+	CONCAT(zpu."Borough", ' / ', zpu."Zone") AS "pickup_location",
+	CONCAT(zdo."Borough", ' / ', zdo."Zone") AS "dropoff_location"
+FROM
+	yellow_taxi_data t 
+	LEFT JOIN zones zpu ON t."PULocationID" = zpu."LocationID"
+	LEFT JOIN zones zdo ON t."DOLocationID" = zdo."LocationID"
+LIMIT 100;
+###################
+SELECT
+	tpep_pickup_datetime,
+	tpep_dropoff_datetime,
+	DATE_TRUNC('DAY', tpep_dropoff_datetime),
+	total_amount
+FROM yellow_taxi_data t
+LIMIT 100;
+###################	
+SELECT
+	CAST(tpep_dropoff_datetime AS DATE) as "day",
+	COUNT(1)
+	total_amount	
+FROM yellow_taxi_data t
+GROUP BY "day"
+ORDER BY "day" DESC
+LIMIT 100;
+###################	
+SELECT
+	CAST(tpep_dropoff_datetime AS DATE) as "day",
+	COUNT(1) as "count"
+FROM
+	yellow_taxi_data t
+GROUP BY
+	"day"
+ORDER BY "count" DESC
+LIMIT 100;
+
+###################	
+
+SELECT
+	CAST(tpep_dropoff_datetime AS DATE) as "day",
+	COUNT(1) as "count",
+	MAX(total_amount) as "max_total",
+	MAX(passenger_count)
+FROM yellow_taxi_data t
+GROUP BY "day"
+ORDER BY "max_total" DESC
+LIMIT 100;
+
+###################	
+SELECT
+	CAST(tpep_dropoff_datetime AS DATE) as "day",
+	"DOLocationID",
+	COUNT(1) as "count",
+	MAX(total_amount) as "max_total",
+	MAX(passenger_count)
+FROM yellow_taxi_data t
+GROUP BY 1, 2
+ORDER BY "day" ASC, "DOLocationID" ASC
+LIMIT 100;
+
