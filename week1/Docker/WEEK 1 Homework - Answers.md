@@ -16,7 +16,7 @@ ORDER BY "day" DESC
 
 LIMIT 100;
 
-![Answer Q3](/Week1_Homework_Images/Week1-Q3.jpg)
+![Answer Q3](/week1/Docker/Week1_Homework_Images/Week1-Q3.jpg)
 
 ## Q4. Largest tip for each day - Answer: 2021-01-20
 # On which day it was the largest tip in January? (note: it's not a typo, it's "tip", not "trip")
@@ -37,7 +37,7 @@ ORDER BY tip_amount DESC
 
 LIMIT 100;
 
-![Answer Q4](/Week1_Homework_Images/Week1-Q4.jpg)
+![Answer Q4](/week1/Docker/Week1_Homework_Images/Week1-Q4.jpg)
 
 ## Q5. Most popular destination - Answer: Upper East Side South
 # What was the most popular destination for passengers picked up in central park on January 14? Enter the zone name (not id). If the zone name is unknown (missing), write "Unknown"
@@ -73,7 +73,7 @@ ORDER BY "count" DESC
 
 LIMIT 100;
 
-![Answer Q5](/Week1_Homework_Images/Week1-Q5.jpg)
+![Answer Q5](/week1/Docker/Week1_Homework_Images/Week1-Q5.jpg)
 
 ## Q6.Most expensive route - Answer: Alphabet City/Unknown
 # What's the pickup-dropoff pair with the largest average price for a ride (calculated based on total_amount)? Enter two zone names separated by a slashFor example:"Jamaica Bay / Clinton East"If any of the zone names are unknown (missing), write "Unknown". For example, "Unknown / Clinton East".
@@ -103,4 +103,4 @@ ORDER BY "avg" DESC
 
 LIMIT 100;
 
-![Answer Q6](/Week1_Homework_Images/Week1-Q6.jpg)
+![Answer Q6](/week1/Docker/Week1_Homework_Images/Week1-Q6.jpg)
