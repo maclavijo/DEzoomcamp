@@ -1,9 +1,11 @@
-### Answers - Homework Week1
+# Answers - Homework Week1
 
 ## Q3.Count records - Answer: 53024
-# How many taxi trips were there on January 15?
+### How many taxi trips were there on January 15?
 SELECT
+
 	CAST(tpep_pickup_datetime AS DATE) as "day",
+	
 	COUNT(1)
 	
 FROM yellow_taxi_data t
@@ -19,9 +21,10 @@ LIMIT 100;
 ![Answer Q3](/week1/Docker/Week1_Homework_Images/Week1-Q3.JPG)
 
 ## Q4. Largest tip for each day - Answer: 2021-01-20
-# On which day it was the largest tip in January? (note: it's not a typo, it's "tip", not "trip")
+### On which day it was the largest tip in January? (note: it's not a typo, it's "tip", not "trip")
 
 SELECT
+
 	CAST(tpep_pickup_datetime AS DATE) as "day",
 	
 	COUNT(1),
@@ -40,7 +43,7 @@ LIMIT 100;
 ![Answer Q4](/week1/Docker/Week1_Homework_Images/Week1-Q4.JPG)
 
 ## Q5. Most popular destination - Answer: Upper East Side South
-# What was the most popular destination for passengers picked up in central park on January 14? Enter the zone name (not id). If the zone name is unknown (missing), write "Unknown"
+### What was the most popular destination for passengers picked up in central park on January 14? Enter the zone name (not id). If the zone name is unknown (missing), write "Unknown"
 
 
 SELECT
@@ -76,7 +79,7 @@ LIMIT 100;
 ![Answer Q5](/week1/Docker/Week1_Homework_Images/Week1-Q5.JPG)
 
 ## Q6.Most expensive route - Answer: Alphabet City/Unknown
-# What's the pickup-dropoff pair with the largest average price for a ride (calculated based on total_amount)? Enter two zone names separated by a slashFor example:"Jamaica Bay / Clinton East"If any of the zone names are unknown (missing), write "Unknown". For example, "Unknown / Clinton East".
+### What's the pickup-dropoff pair with the largest average price for a ride (calculated based on total_amount)? Enter two zone names separated by a slashFor example:"Jamaica Bay / Clinton East"If any of the zone names are unknown (missing), write "Unknown". For example, "Unknown / Clinton East".
 
 SELECT
 	CAST(tpep_pickup_datetime AS DATE) as "day",
